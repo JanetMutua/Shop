@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import environ
 import os
 from pathlib import Path
+import dj_database_url
 
 
 # Initialise environment variables
@@ -96,12 +97,11 @@ WSGI_APPLICATION = 'venicalady.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+ALLOWED_HOSTS = ['.herokuapp.com']
+# heroku database settings
+
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
@@ -185,4 +185,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-
+import django_heroku
+django_heroku.settigns(locals(), staticfiles=False)
