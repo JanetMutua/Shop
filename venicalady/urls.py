@@ -27,6 +27,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Storefront, name='home'),
     path('contact-us/', Contact, name = 'contact'),
+
+    # -----------------------------------------dummy urls------------------------------------------------
+
+    path('newarrivals/', Shop, name='newarrivals'),
     
 
     # ---------------------------------------shop urls-----------------------------------------------------
@@ -47,7 +51,7 @@ urlpatterns = [
 
     path('category', categories, name='category'),
     path('categories/<str:slug>', category_view, name='product_category'),
-    path('categories/<str:cate_slug>/<str:prod_slug>', Product_detail, name='productdetail'),
+    path('categories/', Product_detail, name='productdetail'),
 
     
     # # -------------------------passwords reset links----------------------------------------------

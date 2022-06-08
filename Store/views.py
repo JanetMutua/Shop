@@ -10,10 +10,10 @@ def Storefront(request):
 
 # -----------------------------------------------shop view----------------------------------------
 
-def Shop(request):
-    products = Product.objects.filter(status=0)
-    context = {'products': products}
-    return render(request, 'Store/shop.html', context)
+# def Shop(request):
+#     products = Product.objects.filter(status=0)
+#     context = {'products': products}
+#     return render(request, 'Store/shop.html', context)
 
 # ---------------------------------------------shop selections----------------------------------
 def Trending(request):
@@ -39,19 +39,19 @@ def Contact(request):
     
 #-------------------------------------------------product views--------------------------------------- 
 
-def Product_detail(request, cate_slug, prod_slug):
-    if(Category.objects.filter(slug=cate_slug, status=0)):
-        if(Product.objects.filter(slug=prod_slug, status=0)):
-            products = Product.objects.filter(slug=prod_slug, status=0).first
-            context = {'products': products}
-        else:
-            messages.error(request, 'Something went wrong')
-            return redirect('categories')
+# def Product_detail(request, cate_slug, prod_slug):
+#     if(Category.objects.filter(slug=cate_slug, status=0)):
+#         if(Product.objects.filter(slug=prod_slug, status=0)):
+#             products = Product.objects.filter(slug=prod_slug, status=0).first
+#             context = {'products': products}
+#         else:
+#             messages.error(request, 'Something went wrong')
+#             return redirect('categories')
         
-    else:
-        messages.error(request, 'Something went wrong')
-        return redirect('categories')
-    return render(request, 'Store/productdetail.html', context)
+#     else:
+#         messages.error(request, 'Something went wrong')
+#         return redirect('categories')
+#     return render(request, 'Store/productdetail.html', context)
 
 
 # ---------------------------------------------------wish list, add to cart, checkout-------------------
@@ -65,8 +65,15 @@ def Checkout(request):
 def AddCart(request):
     return render(request, 'Store/cart.html')
 
+def Product_detail(request):
+    return render(request, 'Store/productdetail.html')
 
-# categories views
+
+def Shop(request):
+    return render(request, 'Store/shop.html')
+
+
+#---------------------------------------------- categories views-------------------------------------------
 
 
 def categories(request):
