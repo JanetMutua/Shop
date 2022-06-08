@@ -15,18 +15,18 @@ from pathlib import Path
 
 
 # Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
 
-# AWS S3 SETTINGS
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_URL = os.environ.get('AWS_URL')
-AWS_DEFAULT_ACL = None
-AWS_S3_REGION_NAME = 'us-east-2'
-AWS_S3_SIGNATURE_VERSION = 's3v4'
+# # AWS S3 SETTINGS
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# AWS_URL = os.environ.get('AWS_URL')
+# AWS_DEFAULT_ACL = None
+# AWS_S3_REGION_NAME = 'us-east-2'
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 
 
@@ -146,15 +146,43 @@ USE_TZ = True
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/images/'
 
+
+AWS_ACCESS_KEY_ID='AKIASI3535EUYFG5WHPH'
+
+AWS_SECRET_ACCESS_KEY='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'
+
+AWS_STORAGE_BUCKET_NAME='venica'
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+AWS_DEFAULT_ACL = 'public-read'
+
+AWS_URL='https://venica.s3.amazonaws.com/'
+
+AWS_LOCATION = 'static'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATIC_URL = AWS_URL + '/static/'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = AWS_URL + '/images/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
